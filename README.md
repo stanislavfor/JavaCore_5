@@ -9,4 +9,4 @@
 *Данная промежуточная аттестация оценивается по системе "зачет" / "не зачет".*
 
 #### Репозиторий: 
-[JavaCore_5](https://github.com/stanislavfor/JavaCore_5)
+[JavaCore_5](https://github.com/stanislavfor/JavaCore_5/tree/main/src/main/java/org/example)
