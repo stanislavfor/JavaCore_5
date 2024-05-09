@@ -10,6 +10,8 @@ public class UtilityBackup {
 
     public static void main(String[] args) {
 
+//      Применение методов Paths.get(String) и Path.resolveSibling(String other)
+
         Path SOURCE_DIR = Paths.get("src/main/java/org/example/");
         Path BACKUP_DIR = SOURCE_DIR.resolveSibling("backup");
         Path FILE_PATH = SOURCE_DIR.resolveSibling("backup/backup.zip");
@@ -39,9 +41,13 @@ public class UtilityBackup {
 //                }
 //            }
 
+//         Применение метода ZipOutputStream — для создания архива
+//         ZipInputStream — для чтения архивов
+
         try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(FILE_PATH.toFile()))) {
             Files.walkFileTree(SOURCE_DIR, new SimpleFileVisitor<Path>() {
 
+//          Метод putNextEntry() используется для добавления объектов ZipEntry в архив
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                     zos.putNextEntry(new ZipEntry(String.valueOf(SOURCE_DIR.relativize(file))));
@@ -50,6 +56,7 @@ public class UtilityBackup {
                     return FileVisitResult.CONTINUE;
                 }
 
+//          FileVisitResult — перечисление возможных возвращаемых значений для методов интерфейса FileVisitor
                 @Override
                 public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
                     zos.putNextEntry(new ZipEntry(SOURCE_DIR.relativize(dir) + "/"));
